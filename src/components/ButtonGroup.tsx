@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Row, Col, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "../styles/ButtonGroup.css";
 
 interface ButtonGroupProps {

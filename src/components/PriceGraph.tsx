@@ -23,35 +23,39 @@ const PriceChart: React.FC = () => {
   const [priceData, setPriceData] = useState<Day[]>([]);
   const [selectedPeriod, setSelectedPeriod] = useState<TimePeriod>("day");
   const { t, i18n } = useTranslation(); //change date names to Finnish or English based on the language selected
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [currentDate, setCurrentDate] = useState(new Date());
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const getDateRange = (
     period: TimePeriod,
     date: Date
   ): { startDate: Date; endDate: Date } => {
+    if (date > new Date()) {
+      date.setDate(new Date().getDate());
+    }
     const startDate = new Date(date);
     const endDate = new Date(date);
 
     switch (period) {
       case "day":
         startDate.setDate(startDate.getDate() - 1);
-        startDate.setHours(0, 0, 0, 0);
+        startDate.setUTCHours(0, 0, 0, 0);
 
-        endDate.setHours(23, 59, 59, 999);
+        endDate.setUTCHours(24, 0, 0, 0);
         break;
       case "currentWeek":
         startDate.setDate(startDate.getDate() - 6);
-        startDate.setHours(0, 0, 0, 0);
+        startDate.setUTCHours(0, 0, 0, 0);
 
-        endDate.setHours(23, 59, 59, 999);
+        endDate.setUTCHours(24, 0, 0, 0);
         break;
       case "month":
         startDate.setMonth(endDate.getMonth() - 1);
-        startDate.setHours(0, 0, 0, 0);
+        startDate.setUTCHours(0, 0, 0, 0);
 
-        endDate.setMonth(endDate.getMonth());
-        endDate.setHours(23, 59, 59, 999);
+        endDate.setUTCHours(24, 0, 0, 0);
 
         break;
     }
@@ -70,12 +74,6 @@ const PriceChart: React.FC = () => {
     const todayData = priceData.find((day) => {
       const dayHour = new Date(day.date).getHours();
       const currentDay = new Date().getDate();
-      console.log(
-        currentHour,
-        dayHour,
-        currentDay,
-        new Date(day.date).getDate()
-      );
       return (
         dayHour === currentHour && currentDay === new Date(day.date).getDate()
       );
@@ -102,78 +100,63 @@ const PriceChart: React.FC = () => {
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
     const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-
-    //find the earliest time for the day
-    const currentDay = date.getDate();
-    const currentYear = date.getFullYear(); //without this, the year could be last year
-    const earliestTimeForDay = priceData.find(
-      (item) =>
-        new Date(item.date).getDate() === currentDay &&
-        new Date(item.date).getFullYear() === currentYear
+    const endDate = new Date(
+      priceData.find((d) => d.date === dateString)?.EndDate || dateString
     );
 
-    const firstDate = priceData[0].date;
-    //tooltip needs to show different format than x-axis
     if (isTooltip) {
-      return `${day}.${month} ${hours}:${minutes}`;
-    }
+      const day = date.getDate().toString().padStart(2, "0");
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
 
-    //if the date is the earliest for the day, show the month and day
-    if (earliestTimeForDay?.date === dateString) {
-      //for small screens, only show the date for every 6th day
-      if (
-        screenWidth < 1366 &&
-        selectedPeriod === "month" &&
-        Number(day) % 6 !== 0 &&
-        dateString !== firstDate
-      ) {
-        return "";
-      }
-      return `${date.toLocaleString(i18n.language, { month: "short" })} ${day}`;
-    }
+      switch (selectedPeriod) {
+        case "day":
+          const hours = date.getHours().toString().padStart(2, "0");
+          const minutes = date.getMinutes().toString().padStart(2, "0");
+          return `${day}.${month} ${hours}:${minutes}`;
 
-    //if the selected period is not month and the time interval is 6 hours, show the time
-    if (selectedPeriod !== "month" && Number(hours) % 6 === 0) {
-      //even small screens can handle displaying the time for day
-      if (screenWidth > 768 || selectedPeriod === "day") {
-        if (screenWidth <= 1024 && Number(hours) % 12 !== 0) {
-          return "";
-        }
-        return `${hours}:${minutes}`;
+        case "currentWeek":
+          return `${day}.${month} 00:00 - 23:59`;
+
+        case "month":
+          const endDay = endDate.getDate().toString().padStart(2, "0");
+          const endMonth = (endDate.getMonth() + 1).toString().padStart(2, "0");
+          return `${day}.${month} - ${endDay}.${endMonth}`;
       }
+    }
+    if (
+      selectedPeriod === "day" &&
+      (Number(hours) % 6 === 0 || dateString === priceData.at(-1)?.date)
+    ) {
+      return `${hours}:${minutes}`;
+    } else if (selectedPeriod !== "day") {
+      const monthName = date.toLocaleString(i18n.language, { month: "short" });
+      if (selectedPeriod === "month") {
+        return `${monthName} ${day} - ${Number(day) + 6}`;
+      }
+      return `${monthName} ${day}`;
     }
     return "";
   };
 
   const fetchPriceData = async (period: TimePeriod, date: Date) => {
     try {
+      setIsLoading(true);
       const { startDate, endDate } = getDateRange(period, date);
-      const data = await getPriceData(startDate, endDate);
+      const data = await getPriceData(startDate, endDate, period);
       if (data) {
         console.log(data);
         setPriceData(data);
       }
     } catch (error) {
       console.error("Error fetching price data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     fetchPriceData(selectedPeriod, currentDate);
   }, [selectedPeriod, currentDate]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const handlePrevious = () => {
     const newDate = new Date(currentDate);
@@ -275,34 +258,43 @@ const PriceChart: React.FC = () => {
             </button>
           )}
         </div>
-
-        <ResponsiveContainer width="100%" height={400}>
-          <BarChart
-            data={priceData}
-            margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
-          >
-            <XAxis
-              dataKey="date"
-              tickFormatter={(dateString) => formatDateTime(dateString, false)}
-              angle={-45}
-              textAnchor="end"
-              tickLine={false}
-              interval={0}
-            />
-            <YAxis domain={[Math.floor(minValue), Math.ceil(maxValue)]} />
-            <Tooltip
-              labelFormatter={(dateString) => formatDateTime(dateString, true)}
-            />
-            <Bar dataKey="value" name={t("ToolTipPrice")}>
-              {priceData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.value >= 12 ? "#ff0000" : "#00ff00"}
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+        {isLoading ? (
+          <div className="text-center p-4">
+            <span>Loading...</span>
+          </div>
+        ) : (
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart
+              data={priceData}
+              margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+            >
+              <XAxis
+                dataKey="date"
+                tickFormatter={(dateString) =>
+                  formatDateTime(dateString, false)
+                }
+                angle={-35}
+                textAnchor="end"
+                tickLine={false}
+                interval={0}
+              />
+              <YAxis domain={[Math.floor(minValue), Math.ceil(maxValue)]} />
+              <Tooltip
+                labelFormatter={(dateString) =>
+                  formatDateTime(dateString, true)
+                }
+              />
+              <Bar dataKey="value" name={t("ToolTipPrice")}>
+                {priceData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.value >= 12 ? "#ff0000" : "#00ff00"}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </Container>
   );

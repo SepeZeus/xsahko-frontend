@@ -1,8 +1,30 @@
 {
-  "name": "tempus-frontend",
-  "version": "0.1.0",
+  "name": "xsahko-frontend-vite",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
   "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.22.0",
+    "vite": "^6.1.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.5",
@@ -11,8 +33,6 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^18.x",
-    "@types/react": "^18.3.2",
-    "@types/react-dom": "^18.3.0",
     "axios": "^1.7.1",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
@@ -28,16 +48,8 @@
     "react-i18next": "^15.0.0",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.24.1",
-    "react-scripts": "5.0.1",
     "recharts": "^2.15.1",
-    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

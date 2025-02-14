@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import FinGridCalculation from "./components/FinGridCalculation";
 import DirectiveCalculation from "./components/DirectiveCalculation";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,7 +13,6 @@ import PriceChart from "./components/PriceGraph";
 
 const App: React.FC = () => {
   const [activeService, setActiveService] = useState<string>("fingrid");
-  const { t } = useTranslation();
 
   useEffect(() => {
     const handleBeforeUnload = () => {

@@ -73,13 +73,12 @@ const ElectricityPriceForm: React.FC = () => {
     isMobile,
   });
 
-  const { handleNext, handlePrevious, progress, totalSteps } =
-    useStepNavigation({
-      currentStep: state.currentStep,
-      formData: state.formData,
-      updateState,
-      t,
-    });
+  const { handleNext, handlePrevious, progress } = useStepNavigation({
+    currentStep: state.currentStep,
+    formData: state.formData,
+    updateState,
+    t,
+  });
 
   const {
     handleChange,

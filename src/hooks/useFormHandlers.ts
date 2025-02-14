@@ -38,6 +38,34 @@ export const useFormHandlers = ({
         ? parseFloat(value)
         : value;
 
+    // Validate house type selection
+    if (name === "houseType" && selectedHouseType) {
+      if (
+        ![
+          "Apartmenthouse",
+          "Terracedhouse",
+          "Detachedhouse",
+          "Cottage",
+        ].includes(value)
+      ) {
+        return;
+      }
+    }
+
+    // Validate heating type selection
+    if (name === "heatingType" && selectedHeatingType) {
+      if (
+        ![
+          "ElectricHeating",
+          "DistrictHeating",
+          "GeothermalHeating",
+          "OilHeating",
+        ].includes(value)
+      ) {
+        return;
+      }
+    }
+
     updateState({
       formData: {
         ...formData,
@@ -47,6 +75,34 @@ export const useFormHandlers = ({
   };
 
   const handleFormChange = (name: string, value: number | string | boolean) => {
+    // Validate house type changes
+    if (name === "houseType" && typeof value === "string") {
+      if (
+        ![
+          "Apartmenthouse",
+          "Terracedhouse",
+          "Detachedhouse",
+          "Cottage",
+        ].includes(value)
+      ) {
+        return;
+      }
+    }
+
+    // Validate heating type changes
+    if (name === "heatingType" && typeof value === "string") {
+      if (
+        ![
+          "ElectricHeating",
+          "DistrictHeating",
+          "GeothermalHeating",
+          "OilHeating",
+        ].includes(value)
+      ) {
+        return;
+      }
+    }
+
     updateState({
       formData: {
         ...formData,
@@ -57,15 +113,6 @@ export const useFormHandlers = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    updateState({
-      formData: {
-        ...formData,
-        workShiftType: selectedWorkShiftType
-          ? selectedWorkShiftType.toString()
-          : "",
-      },
-    });
 
     const validationErrors = ValidateFormData(formData, currentStep, t);
     if (validationErrors.length > 0) {
@@ -78,10 +125,10 @@ export const useFormHandlers = ({
 
     const shouldCalculate =
       validationErrors.length === 0 &&
-      (currentStep === 8 ||
-        ((formData.houseType === "ApartmentHouse" ||
-          formData.houseType === "TerracedHouse") &&
-          currentStep === 7));
+      (formData.houseType === "Detachedhouse" ||
+      formData.houseType === "Cottage"
+        ? currentStep === 8 // For Detached house and Cottage, calculate on step 8
+        : currentStep === 7); // For Apartment and Terraced house, calculate on step 7
 
     if (shouldCalculate) {
       try {
@@ -98,6 +145,27 @@ export const useFormHandlers = ({
         console.error("Error:", error);
       }
     }
+
+    // Validate house and heating type selections
+    if (!selectedHouseType || !selectedHeatingType) {
+      updateState({
+        validationErrors: [
+          ...validationErrors,
+          { field: "houseType", message: t("Please select a house type") },
+          { field: "heatingType", message: t("Please select a heating type") },
+        ],
+        showErrors: true,
+      });
+      return;
+    }
+    updateState({
+      formData: {
+        ...formData,
+        workShiftType: selectedWorkShiftType
+          ? selectedWorkShiftType.toString()
+          : "",
+      },
+    });
   };
 
   const createToggleHandler = (field: string, countField?: string) => {
