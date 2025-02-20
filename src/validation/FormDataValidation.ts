@@ -1,4 +1,4 @@
-import { FormDataParams } from "../models/FormDataParams";
+import { FormDataParams } from "@/models/FormDataParams";
 import { TFunction } from "i18next";
 export interface ValidationError {
   field: string;

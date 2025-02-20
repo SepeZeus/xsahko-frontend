@@ -2,7 +2,7 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import { useTranslation } from "react-i18next";
 import { Form, Button } from "react-bootstrap";
-import { CalculationResult } from "../models/FormTypes";
+import { CalculationResult } from "@/models/FormTypes";
 
 interface ConsumptionChartProps {
   result: CalculationResult;
