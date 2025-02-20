@@ -4,7 +4,7 @@ import {
   WorkShiftType,
   HeatingType,
 } from "@/models/FormTypes";
-import { ValidateFormData } from "@/validation/FormDataValidation";
+import { ValidateFormData } from "@/validation/wompwomp";
 import { calculatePriceAndConsumption } from "@/services/FetchDirectiveData";
 import { TFunction } from "i18next";
 

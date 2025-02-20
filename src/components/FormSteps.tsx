@@ -22,7 +22,7 @@ import {
 import { IoCalendarSharp } from "react-icons/io5";
 import { FaCentSign } from "react-icons/fa6";
 import { HouseType, HeatingType, WorkShiftType } from "@/models/FormTypes";
-import { ValidationError } from "@/validation/FormDataValidation";
+import { ValidationError } from "@/validation/wompwomp";
 import { BaseFormStep } from "./BaseFormStep";
 
 interface InitialInformationStepProps {
