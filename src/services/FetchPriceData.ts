@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { Day } from "../models/PriceDataParams";
+import { Day } from "@/models/PriceDataParams";
 
 const CACHE_KEY = "priceData";
 const CACHE_TIMESTAMP_KEY = "priceDataTimestamp";

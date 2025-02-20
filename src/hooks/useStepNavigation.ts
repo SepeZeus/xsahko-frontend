@@ -1,5 +1,5 @@
-import { FormDataParams, HouseType, HeatingType } from "../models/FormTypes";
-import { ValidateFormData } from "../validation/FormDataValidation";
+import { FormDataParams, HouseType, HeatingType } from "@/models/FormTypes";
+import { ValidateFormData } from "@/validation/FormDataValidation";
 import { TFunction } from "i18next";
 
 interface StepNavigationProps {

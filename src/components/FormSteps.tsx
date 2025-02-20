@@ -21,8 +21,8 @@ import {
 } from "@mui/icons-material";
 import { IoCalendarSharp } from "react-icons/io5";
 import { FaCentSign } from "react-icons/fa6";
-import { HouseType, HeatingType, WorkShiftType } from "../models/FormTypes";
-import { ValidationError } from "../validation/FormDataValidation";
+import { HouseType, HeatingType, WorkShiftType } from "@/models/FormTypes";
+import { ValidationError } from "@/validation/FormDataValidation";
 import { BaseFormStep } from "./BaseFormStep";
 
 interface InitialInformationStepProps {

@@ -3,9 +3,9 @@ import {
   HouseType,
   WorkShiftType,
   HeatingType,
-} from "../models/FormTypes";
-import { ValidateFormData } from "../validation/FormDataValidation";
-import { calculatePriceAndConsumption } from "../services/FetchDirectiveData";
+} from "@/models/FormTypes";
+import { ValidateFormData } from "@/validation/FormDataValidation";
+import { calculatePriceAndConsumption } from "@/services/FetchDirectiveData";
 import { TFunction } from "i18next";
 
 interface FormHandlersProps {

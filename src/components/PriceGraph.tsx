@@ -11,10 +11,10 @@ import {
 
 import { Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { getPriceData } from "../services/FetchPriceData";
-import { Day } from "../models/PriceDataParams";
+import { getPriceData } from "@/services/FetchPriceData";
+import { Day } from "@/models/PriceDataParams";
 
-import "../styles/ButtonGroup.css"; // Import the CSS file
+import "@/styles/ButtonGroup.css"; // Import the CSS file
 import { isAfter } from "date-fns";
 
 type TimePeriod = "day" | "currentWeek" | "month";

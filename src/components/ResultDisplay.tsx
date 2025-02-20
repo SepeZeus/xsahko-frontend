@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { CalculationResult } from "../models/FormTypes";
+import { CalculationResult } from "@/models/FormTypes";
 import ConsumptionChart from "./ConsumptionChart";
 
 interface ResultDisplayProps {

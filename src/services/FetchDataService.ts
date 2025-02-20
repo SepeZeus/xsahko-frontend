@@ -1,4 +1,4 @@
-import { DataParams } from "../models/DataParams";
+import { DataParams } from "@/models/DataParams";
 import axios from "axios";
 
 export const FetchDataService = async (

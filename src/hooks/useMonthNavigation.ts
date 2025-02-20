@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CalculationResult } from "../models/FormTypes";
+import { CalculationResult } from "@/models/FormTypes";
 
 interface MonthNavigationProps {
   result: CalculationResult | null;

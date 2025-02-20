@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "react-bootstrap";
-import "../styles/ButtonGroup.css";
+import "@/styles/ButtonGroup.css";
 
 interface ButtonGroupProps {
   activeService: string;

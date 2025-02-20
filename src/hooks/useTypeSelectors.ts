@@ -1,4 +1,4 @@
-import { HouseType, WorkShiftType, HeatingType } from "../models/FormTypes";
+import { HouseType, WorkShiftType, HeatingType } from "@/models/FormTypes";
 
 interface TypeSelectorsProps {
   formData: any;

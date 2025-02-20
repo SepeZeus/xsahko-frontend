@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Header from "./Header";
 import Footer from "./Footer";
-import "../styles/ContactPage.css";
+import "@/styles/ContactPage.css";
 
 const ContactPage: React.FC = () => {
   const navigate = useNavigate();

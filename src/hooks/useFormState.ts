@@ -5,8 +5,8 @@ import {
   HouseType,
   WorkShiftType,
   HeatingType,
-} from "../models/FormTypes";
-import { ValidationError } from "../validation/FormDataValidation";
+} from "@/models/FormTypes";
+import { ValidationError } from "@/validation/FormDataValidation";
 
 interface FormState {
   formData: FormDataParams;

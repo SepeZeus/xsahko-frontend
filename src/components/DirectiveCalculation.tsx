@@ -7,13 +7,13 @@ import {
   Tooltip as ChartJSTooltip,
   Legend,
 } from "chart.js";
-import "../styles/DirectiveCalculation.css";
-import { useDeviceDetection } from "../hooks/useDeviceDetection";
-import { useFormState } from "../hooks/useFormState";
-import { useStepNavigation } from "../hooks/useStepNavigation";
-import { useMonthNavigation } from "../hooks/useMonthNavigation";
-import { useFormHandlers } from "../hooks/useFormHandlers";
-import { useTypeSelectors } from "../hooks/useTypeSelectors";
+import "@/styles/DirectiveCalculation.css";
+import { useDeviceDetection } from "@/hooks/useDeviceDetection";
+import { useFormState } from "@/hooks/useFormState";
+import { useStepNavigation } from "@/hooks/useStepNavigation";
+import { useMonthNavigation } from "@/hooks/useMonthNavigation";
+import { useFormHandlers } from "@/hooks/useFormHandlers";
+import { useTypeSelectors } from "@/hooks/useTypeSelectors";
 import { ProgressBar } from "./ProgressBar";
 import {
   InitialInformationStep,
@@ -29,7 +29,7 @@ import { ResultDisplay } from "./ResultDisplay";
 
 import { Form, Container } from "react-bootstrap";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import "../styles/IconStyles.css";
+import "@/styles/IconStyles.css";
 import { useTranslation } from "react-i18next";
 import "react-circular-progressbar/dist/styles.css";
 

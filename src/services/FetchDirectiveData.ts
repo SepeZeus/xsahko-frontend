@@ -1,4 +1,4 @@
-import { FormDataParams, CalculationResult } from "../models/FormDataParams";
+import { FormDataParams, CalculationResult } from "@/models/FormDataParams";
 
 export const calculatePriceAndConsumption = async (
   formData: FormDataParams
