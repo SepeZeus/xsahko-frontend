@@ -6,7 +6,7 @@ import {
   WorkShiftType,
   HeatingType,
 } from "@/models/FormTypes";
-import { ValidationError } from "@/validation/wompwomp";
+import { ValidationError } from "@/validation/FormDataValidation";
 
 interface FormState {
   formData: FormDataParams;
