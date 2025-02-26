@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-![CD Pipeline](https://github.com/Sepezeus/xsahko-frontend/actions/workflows/CD.yml/badge.svg)
+![CD Pipeline](https://github.com/Sepezeus/xsahko-frontend/actions/workflows/cd.yml/badge.svg)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
