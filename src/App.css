@@ -5,21 +5,25 @@
 .info-box {
   background-color: #f5ba3c;
   color: black;
-  padding: 3rem 1rem; 
+  padding: 3rem 1rem;
+  width: 100%; /* Add this */
   max-width: 1320px;
-  align-items: center;
+  margin: 1.3rem auto 1rem;
+  border-radius: 8px;
   text-align: center;
   font-size: 1.2rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  margin-top: 1.3rem;
-  margin: 1.3rem auto 1rem;
 }
 
+.content-container {
+  padding: 0 15px;
+  margin: 0 auto;
+  max-width: 2000px;
+  width: 100%;
+}
 
 .info-text-container {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
 }
@@ -29,15 +33,15 @@
   color: white;
   padding: 2rem;
   border-radius: 30px;
-  margin: 1rem; 
-  width: calc(33% - 2rem); 
-  box-sizing: border-box; 
+  margin: 1rem;
+  width: calc(33% - 2rem);
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   .info-text {
-    width: calc(100% - 2rem); 
-    margin: 1rem 0; 
+    width: calc(100% - 2rem);
+    margin: 1rem 0;
   }
 
   .info-title {
@@ -71,42 +75,41 @@
   color: white;
   margin: 0;
 }
- 
+
 .footer-links a {
   color: white;
   margin: 0 5px;
   text-decoration: none;
 }
- 
+
 .footer-links a:hover {
   text-decoration: underline;
 }
- 
+
 .footer-logo {
   height: 68px;
   width: 173px;
-  
 }
- 
+
 .footer-icon {
   color: #f5ba3c;
   margin-right: 0 5px;
   transition: color 0.3s ease;
 }
- 
+
 .footer-icon-container {
   display: inline-block;
   position: relative;
   margin-right: 10px;
   cursor: pointer;
 }
- 
+
 .footer-icon-container:hover .footer-icon {
   color: #ffffff;
 }
- 
+
 .footer-icon-container:hover::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -5px;
   left: -5px;
@@ -121,9 +124,9 @@
 }
 
 .footer-links a:not(:last-child)::after {
-  content: '|';
-  margin-left: 10px; 
-  margin-right: 10px; 
+  content: "|";
+  margin-left: 10px;
+  margin-right: 10px;
   display: inline-block;
   vertical-align: middle;
   color: grey;
