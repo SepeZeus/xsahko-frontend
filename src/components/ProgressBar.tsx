@@ -1,24 +1,23 @@
-import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-interface ProgressBarProps {
+type ProgressBarProps = {
   progress: number;
   pathColor?: string;
   textColor?: string;
   trailColor?: string;
   textSize?: string;
   strokeWidth?: number;
-}
+};
 
-export const ProgressBar: React.FC<ProgressBarProps> = ({
+export const ProgressBar = ({
   progress,
   pathColor = "#808080",
   textColor = "black",
   trailColor = "#FFFFFF",
   textSize = "20px",
   strokeWidth = 15,
-}) => {
+}: ProgressBarProps) => {
   return (
     <div className="progress-bar-container">
       <CircularProgressbar

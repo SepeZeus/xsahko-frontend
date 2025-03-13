@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import FinGridCalculation from "./components/FinGridCalculation";
 import DirectiveCalculation from "./components/DirectiveCalculation";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 
 import PriceChart from "./components/PriceGraph";
 
-const App: React.FC = () => {
+const App = () => {
   const [activeService, setActiveService] = useState<string>("fingrid");
 
   useEffect(() => {
@@ -43,18 +43,20 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      <Container fluid>
-        <div className="content-container">
-          <InfoBox />
-          <ButtonGroup
-            activeService={activeService}
-            setActiveService={setActiveService}
-          />
-          <Row className="justify-content-center">
-            <Col md={8}>{renderService()}</Col>
-          </Row>
-        </div>
-      </Container>
+      <div className="main-content">
+        <Container fluid>
+          <div className="content-container">
+            <InfoBox />
+            <ButtonGroup
+              activeService={activeService}
+              setActiveService={setActiveService}
+            />
+            <Row className="justify-content-center">
+              <Col md={8}>{renderService()}</Col>
+            </Row>
+          </div>
+        </Container>
+      </div>
       <Footer />
     </div>
   );

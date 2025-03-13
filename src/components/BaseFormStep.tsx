@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-interface BaseFormStepProps {
+type BaseFormStepProps = {
   title: string;
   children: React.ReactNode;
   onNext?: () => void;
@@ -11,9 +11,9 @@ interface BaseFormStepProps {
   showPrevious?: boolean;
   showNext?: boolean;
   showSubmit?: boolean;
-}
+};
 
-export const BaseFormStep: React.FC<BaseFormStepProps> = ({
+export const BaseFormStep = ({
   title,
   children,
   onNext,
@@ -22,7 +22,7 @@ export const BaseFormStep: React.FC<BaseFormStepProps> = ({
   showPrevious = true,
   showNext = true,
   showSubmit = false,
-}) => {
+}: BaseFormStepProps) => {
   const { t } = useTranslation();
 
   return (

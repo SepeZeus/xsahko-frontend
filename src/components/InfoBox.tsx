@@ -1,8 +1,7 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { Row, Col } from "react-bootstrap";
 
-const InfoBox: React.FC = () => {
+const InfoBox = () => {
   const { t } = useTranslation();
 
   return (

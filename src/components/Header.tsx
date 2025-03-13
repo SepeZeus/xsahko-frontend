@@ -4,7 +4,7 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 import i18n from "@/localization/pagelocalization";
 import "@/styles/Header.css";
 
-const Header: React.FC = () => {
+const Header = () => {
   const { t } = useTranslation();
 
   const changeLanguage = (lang: string) => {

@@ -1,4 +1,3 @@
-import React from "react";
 import { Form, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import {
@@ -25,21 +24,21 @@ import { HouseType, HeatingType, WorkShiftType } from "@/models/FormTypes";
 import { ValidationError } from "@/validation/FormDataValidation";
 import { BaseFormStep } from "./BaseFormStep";
 
-interface InitialInformationStepProps {
+type InitialInformationStepProps = {
   year: number;
   directiveFixedPrice: number;
   onChange: (name: string, value: number) => void;
   onNext: () => void;
   validationErrors: ValidationError[];
-}
+};
 
-export const InitialInformationStep: React.FC<InitialInformationStepProps> = ({
+export const InitialInformationStep = ({
   year,
   directiveFixedPrice,
   onChange,
   onNext,
   validationErrors,
-}) => {
+}: InitialInformationStepProps) => {
   const { t } = useTranslation();
 
   return (
@@ -97,21 +96,21 @@ export const InitialInformationStep: React.FC<InitialInformationStepProps> = ({
   );
 };
 
-interface HouseTypeStepProps {
+type HouseTypeStepProps = {
   selectedHouseType: HouseType | null;
   onHouseTypeSelect: (houseType: HouseType) => void;
   onNext: () => void;
   onPrevious: () => void;
   validationErrors: ValidationError[];
-}
+};
 
-export const HouseTypeStep: React.FC<HouseTypeStepProps> = ({
+export const HouseTypeStep = ({
   selectedHouseType,
   onHouseTypeSelect,
   onNext,
   onPrevious,
   validationErrors,
-}) => {
+}: HouseTypeStepProps) => {
   const { t } = useTranslation();
 
   const houseTypes = [
@@ -159,21 +158,21 @@ export const HouseTypeStep: React.FC<HouseTypeStepProps> = ({
   );
 };
 
-interface HeatingTypeStepProps {
+type HeatingTypeStepProps = {
   selectedHeatingType: HeatingType | null;
   onHeatingTypeSelect: (heatingType: HeatingType) => void;
   onNext: () => void;
   onPrevious: () => void;
   validationErrors: ValidationError[];
-}
+};
 
-export const HeatingTypeStep: React.FC<HeatingTypeStepProps> = ({
+export const HeatingTypeStep = ({
   selectedHeatingType,
   onHeatingTypeSelect,
   onNext,
   onPrevious,
   validationErrors,
-}) => {
+}: HeatingTypeStepProps) => {
   const { t } = useTranslation();
 
   const heatingTypes = [
@@ -218,7 +217,7 @@ export const HeatingTypeStep: React.FC<HeatingTypeStepProps> = ({
   );
 };
 
-interface WorkshiftTypeStepProps {
+type WorkshiftTypeStepProps = {
   squareMeters: number;
   numberOfResidents: number;
   workShiftType: string;
@@ -228,9 +227,9 @@ interface WorkshiftTypeStepProps {
   onPrevious: () => void;
   validationErrors: ValidationError[];
   showErrors: boolean;
-}
+};
 
-export const WorkshiftTypeStep: React.FC<WorkshiftTypeStepProps> = ({
+export const WorkshiftTypeStep = ({
   squareMeters,
   numberOfResidents,
   workShiftType,
@@ -240,7 +239,7 @@ export const WorkshiftTypeStep: React.FC<WorkshiftTypeStepProps> = ({
   onPrevious,
   validationErrors,
   showErrors,
-}) => {
+}: WorkshiftTypeStepProps) => {
   const { t } = useTranslation();
 
   const workShiftTypes = [
@@ -329,7 +328,7 @@ export const WorkshiftTypeStep: React.FC<WorkshiftTypeStepProps> = ({
   );
 };
 
-interface FloorHeatingStepProps {
+type FloorHeatingStepProps = {
   hasFloorHeating: boolean;
   floorHeatingSquareMeters: number;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -337,9 +336,9 @@ interface FloorHeatingStepProps {
   onNext: () => void;
   onPrevious: () => void;
   validationErrors: ValidationError[];
-}
+};
 
-export const FloorHeatingStep: React.FC<FloorHeatingStepProps> = ({
+export const FloorHeatingStep = ({
   hasFloorHeating,
   floorHeatingSquareMeters,
   onInputChange,
@@ -347,7 +346,7 @@ export const FloorHeatingStep: React.FC<FloorHeatingStepProps> = ({
   onNext,
   onPrevious,
   validationErrors,
-}) => {
+}: FloorHeatingStepProps) => {
   const { t } = useTranslation();
 
   return (
@@ -408,7 +407,7 @@ export const FloorHeatingStep: React.FC<FloorHeatingStepProps> = ({
   );
 };
 
-interface ElectricCarStepProps {
+type ElectricCarStepProps = {
   hasElectricCar: boolean;
   electricCarCount: number;
   electricCarKwhUsagePerYear: number;
@@ -418,9 +417,9 @@ interface ElectricCarStepProps {
   onPrevious: () => void;
   validationErrors: ValidationError[];
   showErrors: boolean;
-}
+};
 
-export const ElectricCarStep: React.FC<ElectricCarStepProps> = ({
+export const ElectricCarStep = ({
   hasElectricCar,
   electricCarCount,
   electricCarKwhUsagePerYear,
@@ -430,7 +429,7 @@ export const ElectricCarStep: React.FC<ElectricCarStepProps> = ({
   onPrevious,
   validationErrors,
   showErrors,
-}) => {
+}: ElectricCarStepProps) => {
   const { t } = useTranslation();
 
   const renderTooltip = (props: any) => (
@@ -526,7 +525,7 @@ export const ElectricCarStep: React.FC<ElectricCarStepProps> = ({
   );
 };
 
-interface SaunaStepProps {
+type SaunaStepProps = {
   hasSauna: boolean;
   saunaHeatingFrequency: number;
   hasFirePlace: boolean;
@@ -539,9 +538,9 @@ interface SaunaStepProps {
   onPrevious: () => void;
   onSubmit: () => void;
   validationErrors: ValidationError[];
-}
+};
 
-export const SaunaStep: React.FC<SaunaStepProps> = ({
+export const SaunaStep = ({
   hasSauna,
   saunaHeatingFrequency,
   hasFirePlace,
@@ -554,7 +553,7 @@ export const SaunaStep: React.FC<SaunaStepProps> = ({
   onPrevious,
   onSubmit,
   validationErrors,
-}) => {
+}: SaunaStepProps) => {
   const { t } = useTranslation();
   const isApartmentOrTerraced =
     houseType === "Apartmenthouse" || houseType === "Terracedhouse";
@@ -680,7 +679,7 @@ export const SaunaStep: React.FC<SaunaStepProps> = ({
     </BaseFormStep>
   );
 };
-interface SolarPanelStepProps {
+type SolarPanelStepProps = {
   hasSolarPanels: boolean;
   solarPanelCount: number;
   onSolarPanelChange: (value: boolean) => void;
@@ -688,9 +687,9 @@ interface SolarPanelStepProps {
   onPrevious: () => void;
   onSubmit: () => void;
   validationErrors: ValidationError[];
-}
+};
 
-export const SolarPanelStep: React.FC<SolarPanelStepProps> = ({
+export const SolarPanelStep = ({
   hasSolarPanels,
   solarPanelCount,
   onSolarPanelChange,
@@ -698,7 +697,7 @@ export const SolarPanelStep: React.FC<SolarPanelStepProps> = ({
   onPrevious,
   onSubmit,
   validationErrors,
-}) => {
+}: SolarPanelStepProps) => {
   const { t } = useTranslation();
 
   return (

@@ -1,10 +1,8 @@
-import React from "react";
 import { Bar } from "react-chartjs-2";
 import { useTranslation } from "react-i18next";
 import { Form, Button } from "react-bootstrap";
 import { CalculationResult } from "@/models/FormTypes";
-
-interface ConsumptionChartProps {
+type ConsumptionChartProps = {
   result: CalculationResult;
   showSpotPrice: boolean;
   showFixedPrice: boolean;
@@ -17,9 +15,9 @@ interface ConsumptionChartProps {
   currentMonthIndex: number;
   handlePrevMonthPeriod: () => void;
   handleNextMonthPeriod: () => void;
-}
+};
 
-const ConsumptionChart: React.FC<ConsumptionChartProps> = ({
+const ConsumptionChart = ({
   result,
   showSpotPrice,
   showFixedPrice,
@@ -31,7 +29,7 @@ const ConsumptionChart: React.FC<ConsumptionChartProps> = ({
   currentMonthIndex,
   handlePrevMonthPeriod,
   handleNextMonthPeriod,
-}) => {
+}: ConsumptionChartProps) => {
   const { t, i18n } = useTranslation();
 
   if (

@@ -1,10 +1,9 @@
-import React from "react";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { CalculationResult } from "@/models/FormTypes";
 import ConsumptionChart from "./ConsumptionChart";
 
-interface ResultDisplayProps {
+type ResultDisplayProps = {
   result: CalculationResult;
   showSpotPrice: boolean;
   showFixedPrice: boolean;
@@ -18,9 +17,8 @@ interface ResultDisplayProps {
   handleNextMonthPeriod: () => void;
   visibleMonths: any[];
   onReset: () => void;
-}
-
-export const ResultDisplay: React.FC<ResultDisplayProps> = ({
+};
+export const ResultDisplay = ({
   result,
   showSpotPrice,
   showFixedPrice,
@@ -34,7 +32,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
   handleNextMonthPeriod,
   visibleMonths,
   onReset,
-}) => {
+}: ResultDisplayProps) => {
   const { t } = useTranslation();
 
   return (

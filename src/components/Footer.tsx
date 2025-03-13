@@ -9,7 +9,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import XIcon from "@mui/icons-material/X";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const { t } = useTranslation();
   const [isGitHubMenuOpen, setGitHubMenuOpen] = useState(false);
   const githubDropdownRef = useRef<HTMLDivElement>(null);

@@ -43,7 +43,7 @@ ChartJS.register(
   ChartDataLabels
 );
 
-const ElectricityPriceForm: React.FC = () => {
+const ElectricityPriceForm = () => {
   const { state, updateState, resetState } = useFormState();
   const {
     formData,

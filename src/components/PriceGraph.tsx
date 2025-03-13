@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -19,7 +19,7 @@ import { isAfter } from "date-fns";
 
 type TimePeriod = "day" | "currentWeek" | "month";
 
-const PriceChart: React.FC = () => {
+const PriceChart = () => {
   const [priceData, setPriceData] = useState<Day[]>([]);
   const [selectedPeriod, setSelectedPeriod] = useState<TimePeriod>("day");
   const { t, i18n } = useTranslation(); //change date names to Finnish or English based on the language selected

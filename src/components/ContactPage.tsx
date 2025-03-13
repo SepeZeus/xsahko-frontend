@@ -5,7 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import "@/styles/ContactPage.css";
 
-const ContactPage: React.FC = () => {
+const ContactPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [formData, setFormData] = useState({

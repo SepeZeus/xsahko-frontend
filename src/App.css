@@ -62,14 +62,32 @@
   margin-left: 73px;
 }
 
-/*FOOTER*/
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+.main-content {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  background-color: black;
+  width: 100%;
+  padding: 1rem 0;
+  margin-top: 0; /* Remove margin-top */
+}
+
+/*FOOTER*/
+/* 
 .footer {
   background-color: black;
   width: 100%;
   padding: 1rem 0;
   margin-top: 50px;
-}
+} */
 
 .footer p {
   color: white;
