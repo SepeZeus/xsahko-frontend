@@ -44,14 +44,16 @@ const App: React.FC = () => {
     <div className="App">
       <Header />
       <Container fluid>
-        <InfoBox />
-        <ButtonGroup
-          activeService={activeService}
-          setActiveService={setActiveService}
-        />
-        <Row className="justify-content-center">
-          <Col md={8}>{renderService()}</Col>
-        </Row>
+        <div className="content-container">
+          <InfoBox />
+          <ButtonGroup
+            activeService={activeService}
+            setActiveService={setActiveService}
+          />
+          <Row className="justify-content-center">
+            <Col md={8}>{renderService()}</Col>
+          </Row>
+        </div>
       </Container>
       <Footer />
     </div>
