@@ -139,6 +139,7 @@ const ElectricityPriceForm = () => {
             onNext={handleNext}
             onPrevious={handlePrevious}
             validationErrors={validationErrors}
+            showErrors={showErrors}
           />
         );
       case 3:

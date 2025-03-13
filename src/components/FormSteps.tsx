@@ -24,6 +24,8 @@ import { HouseType, HeatingType, WorkShiftType } from "@/models/FormTypes";
 import { ValidationError } from "@/validation/FormDataValidation";
 import { BaseFormStep } from "./BaseFormStep";
 
+import { useState } from "react";
+
 type InitialInformationStepProps = {
   year: number;
   directiveFixedPrice: number;
@@ -102,16 +104,22 @@ type HouseTypeStepProps = {
   onNext: () => void;
   onPrevious: () => void;
   validationErrors: ValidationError[];
+  showErrors?: boolean;
 };
-
 export const HouseTypeStep = ({
   selectedHouseType,
   onHouseTypeSelect,
   onNext,
   onPrevious,
-  validationErrors,
+  showErrors = false,
 }: HouseTypeStepProps) => {
   const { t } = useTranslation();
+  const [hasAttemptedNext, setHasAttemptedNext] = useState(false);
+
+  const handleNext = () => {
+    setHasAttemptedNext(true);
+    onNext();
+  };
 
   const houseTypes = [
     { type: "Apartmenthouse", icon: ApartmentRounded, label: "ApartmentHouse" },
@@ -127,7 +135,7 @@ export const HouseTypeStep = ({
   return (
     <BaseFormStep
       title={t("houseType")}
-      onNext={onNext}
+      onNext={handleNext}
       onPrevious={onPrevious}
     >
       <div className="form-group">
@@ -146,14 +154,11 @@ export const HouseTypeStep = ({
           ))}
         </div>
       </div>
-      <div style={{ textAlign: "center" }}>
-        <span className="error-message">
-          {
-            validationErrors.find((error) => error.field === "houseType")
-              ?.message
-          }
-        </span>
-      </div>
+      {(hasAttemptedNext || showErrors) && !selectedHouseType && (
+        <div style={{ textAlign: "center" }}>
+          <span className="error-message">{t("HouseTypeError")}</span>
+        </div>
+      )}
     </BaseFormStep>
   );
 };

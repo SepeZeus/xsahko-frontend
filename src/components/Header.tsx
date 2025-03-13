@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import i18n from "@/localization/pagelocalization";

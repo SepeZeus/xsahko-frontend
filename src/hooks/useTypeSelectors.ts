@@ -16,23 +16,17 @@ export const useTypeSelectors = ({
   updateState,
 }: TypeSelectorsProps) => {
   const handleHouseTypeSelect = (houseType: HouseType) => {
-    if (
-      houseType === "Apartmenthouse" ||
-      houseType === "Terracedhouse" ||
-      houseType === "Detachedhouse" ||
-      houseType === "Cottage"
-    ) {
-      const newHouseType = selectedHouseType === houseType ? null : houseType;
+    const newHouseType = selectedHouseType === houseType ? null : houseType;
 
-      updateState({
-        selectedHouseType: newHouseType,
-        showErrors: false,
-        formData: {
-          ...formData,
-          houseType: newHouseType ? houseType.toString() : "",
-        },
-      });
-    }
+    updateState({
+      selectedHouseType: newHouseType,
+      showErrors: false, // Reset errors when selecting/deselecting
+      formData: {
+        ...formData,
+        houseType: newHouseType ? houseType : "", // Empty string when deselecting
+      },
+      validationErrors: [], // Clear validation errors on selection change
+    });
   };
 
   const handleWorkshiftTypeSelect = (workShiftType: WorkShiftType) => {
